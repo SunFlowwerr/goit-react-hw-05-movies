@@ -1,9 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieDetails } from 'source/movie-api';
 import { Link } from 'react-router-dom';
 import { Cast } from 'components/Cast';
 import { Reviews } from 'components/Reviews';
+import { Loader } from 'components/Loader';
 
 export const MovieDetails = () => {
   const location = useLocation();
@@ -78,7 +79,9 @@ export const MovieDetails = () => {
               </Link>
             </li>
           </ul>
-          <Outlet />
+          <Suspense fallback={<Loader></Loader>}>
+            <Outlet />
+          </Suspense>
         </div>
       )}
     </>
