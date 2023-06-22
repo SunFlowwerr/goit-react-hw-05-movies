@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
   return (
@@ -53,3 +53,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

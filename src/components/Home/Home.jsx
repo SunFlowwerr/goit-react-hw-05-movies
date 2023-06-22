@@ -2,7 +2,7 @@ import { fetchTrandingMovies } from 'source/movie-api';
 import { useEffect, useState } from 'react';
 import { MoviesList } from 'components/MoviesList';
 
-export const Home = ({}) => {
+export const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const Home = ({}) => {
   return (
     <div>
       <h1>Tranding movies</h1>
-      <MoviesList movies={movies}></MoviesList>
+      <MoviesList movies={movies} to={'movies/'}></MoviesList>
     </div>
   );
 };

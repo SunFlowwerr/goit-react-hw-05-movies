@@ -44,7 +44,9 @@ export const Movies = () => {
         <input onChange={handleChange} value={searchString}></input>
         <button type="submit">Search</button>
       </form>
-      <MoviesList movies={movies}></MoviesList>
+      <MoviesList movies={movies} to={''}></MoviesList>
     </div>
   );
 };
+
+export default Movies;

@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieDetails } from 'source/movie-api';
 import { Link } from 'react-router-dom';
 import { Cast } from 'components/Cast';
+import { Reviews } from 'components/Reviews';
 
 export const MovieDetails = () => {
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
@@ -21,7 +24,9 @@ export const MovieDetails = () => {
             marginLeft: '40px',
           }}
         >
-          <button style={{ marginBottom: '10px' }}>Go back</button>
+          <Link to={backLinkLocationRef.current}>
+            <button style={{ marginBottom: '10px' }}>Go back</button>
+          </Link>
           <div style={{ display: 'flex' }}>
             <img
               src={
@@ -36,12 +41,20 @@ export const MovieDetails = () => {
               <h2>
                 {movie.original_title} ({parseInt(movie.release_date)})
               </h2>
-              <p>User score: {parseInt(movie.popularity)}%</p>
+              <p>User score: {parseInt(movie.vote_average * 10)}%</p>
               <h3>Overview:</h3>
               <p>{movie.overview}</p>
               <h3>Genres:</h3>
               {movie.genres.length > 0 ? (
-                <ul style={{ display: 'flex', listStyle: 'none' }}>
+                <ul
+                  style={{
+                    display: 'flex',
+                    listStyle: 'none',
+                    flexDirection: 'row',
+                    gap: '7px',
+                    padding: '0px',
+                  }}
+                >
                   {' '}
                   {movie.genres.map(genre => (
                     <li>{genre.name}</li>
@@ -55,12 +68,14 @@ export const MovieDetails = () => {
           <h4>Additional information:</h4>
           <ul>
             <li>
-              <Link to="cast" element={<Cast movieId={movieId}></Cast>}>
+              <Link to="cast" element={<Cast></Cast>}>
                 Cast
               </Link>
             </li>
             <li>
-              <Link to="reviews">Reviews</Link>
+              <Link to="reviews" element={<Reviews></Reviews>}>
+                Reviews
+              </Link>
             </li>
           </ul>
           <Outlet />

@@ -27,3 +27,7 @@ export function fetchMoviesByInput(input) {
 export function fetchMoviesCast(movieId) {
   return fetchError(`${BASE_URL}movie/${movieId}/credits?api_key=${API_KEY}`);
 }
+
+export function fetchMoviesReviews(movieId) {
+  return fetchError(`${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}`);
+}
