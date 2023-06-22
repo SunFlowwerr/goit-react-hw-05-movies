@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 export const Cast = ({ movieId }) => {
   const [cast, setCast] = useState([]);
-
+  console.log(movieId);
   useEffect(() => {
     fetchMoviesCast(movieId).then(res => setCast(res.cast));
   }, [movieId]);
@@ -12,9 +12,9 @@ export const Cast = ({ movieId }) => {
     <>
       {cast.length > 0 && (
         <ul>
-          {cast.map(({ credit_id, original_name, character }) => (
-            <li key={credit_id}>
-              <p>{original_name}</p>
+          {cast.map(({ id, name, character }) => (
+            <li key={id}>
+              <p>{name}</p>
               <p>{character}</p>
             </li>
           ))}
