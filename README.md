@@ -7,6 +7,6 @@ Website about movies in the cinema world.
 
 ## Technology stack:
  - [React](https://react.dev/)
- - [API]
+ - [API](https://www.themoviedb.org/)
  - [React Router](https://reactrouter.com/en/main)
 
